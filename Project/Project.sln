@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.DAL", "Project.DAL\Project.DAL.csproj", "{A376938E-8674-4BC5-AF10-C5D1F025DC62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.DAL", "Project.DAL\Project.DAL.csproj", "{A376938E-8674-4BC5-AF10-C5D1F025DC62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.DLL", "Project.DLL\Project.DLL.csproj", "{B3BF08E5-A0E7-4055-9EA1-749C93923B44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.BLL", "Project.DLL\Project.BLL.csproj", "{B3BF08E5-A0E7-4055-9EA1-749C93923B44}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.PL", "Project.PL\Project.PL.csproj", "{F9214F6B-8B45-4484-832A-B70F77DA38C7}"
 EndProject
