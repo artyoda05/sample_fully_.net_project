@@ -1,6 +1,6 @@
 using System;
 
-namespace Project.PL
+namespace Project.Front
 {
     public class WeatherForecast
     {

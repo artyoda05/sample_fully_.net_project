@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Project.DLL
+namespace Project.BLL
 {
     public class Class1
     {
