@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Project.DAL.Context;
 using Project.DAL.Entities;
 using Project.DAL.Interfaces;
 using Project.DAL.Repositories;
+using Project.DAL.Identity;
 
 namespace Project.DAL
 {
@@ -14,11 +17,18 @@ namespace Project.DAL
         private UserRepository _users;
         private MaterialRepository _materials;
         private RatingRepository _ratings;
+        private ApplicationRoleManager _roleManager;
+        private ApplicationUserManager _userManager;
 
         public UnitOfWork(EFContext context) => _context = context;
-        public IRepository<UserProfile> Users => _users ??=  new UserRepository(_context);
+        public IRepository<UserProfile> Profiles => _users ??=  new UserRepository(_context);
         public IRepository<Material> Materials => _materials ??= new MaterialRepository(_context);
         public IRepository<Rating> Ratings => _ratings ??= new RatingRepository(_context);
+        public RoleManager<ApplicationRole> Roles => 
+            _roleManager ??= new ApplicationRoleManager(new RoleStore<ApplicationRole>(_context));
+        public UserManager<ApplicationUser> Users =>
+            _userManager ??= new ApplicationUserManager(new UserStore<ApplicationUser>(_context));
+
         public void Save()
         {
             _context.SaveChanges();
