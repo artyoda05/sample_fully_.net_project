@@ -1,36 +1,44 @@
 ﻿using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using Project.DAL.Context;
 using Project.DAL.Entities;
 using Project.DAL.Interfaces;
 
 namespace Project.DAL.Repositories
 {
-    public class UserRepository : IRepository<User>
+    public class UserRepository : IRepository<UserProfile>
     {
-
-
-        public IEnumerable<User> ReadAll()
+        private readonly EFContext _context;
+        public UserRepository(EFContext context) => _context = context;
+        public IEnumerable<UserProfile> ReadAll()
         {
             throw new System.NotImplementedException();
         }
 
-        public User Read(int id)
+        public UserProfile Read(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.UserProfiles.Find(id);
         }
 
-        public void Create(User item)
+        public void Create(UserProfile item)
         {
-            throw new System.NotImplementedException();
+            _context.UserProfiles.Add(item);
         }
 
-        public void Update(User item)
+        public void Update(UserProfile item)
         {
-            throw new System.NotImplementedException();
+            _context.Entry(item).State = EntityState.Modified;
         }
 
-        public void Delete(int id)
+        public void Delete(UserProfile item)
         {
-            throw new System.NotImplementedException();
+            _context.UserProfiles.Remove(item);
+        }
+
+        public void Dispose()
+        {
+            _context?.Dispose();
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
+using Project.DAL.Context;
 using Project.DAL.Entities;
 using Project.DAL.Interfaces;
 
@@ -6,6 +8,8 @@ namespace Project.DAL.Repositories
 {
     public class RatingRepository : IRepository<Rating>
     {
+        private readonly EFContext _context;
+        public RatingRepository(EFContext context) => _context = context;
         public IEnumerable<Rating> ReadAll()
         {
             throw new System.NotImplementedException();
@@ -13,22 +17,27 @@ namespace Project.DAL.Repositories
 
         public Rating Read(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Ratings.Find(id);
         }
 
         public void Create(Rating item)
         {
-            throw new System.NotImplementedException();
+            _context.Ratings.Add(item);
         }
 
         public void Update(Rating item)
         {
-            throw new System.NotImplementedException();
+            _context.Entry(item).State = EntityState.Modified;
         }
 
-        public void Delete(int id)
+        public void Delete(Rating item)
         {
-            throw new System.NotImplementedException();
+            _context.Ratings.Remove(item);
+        }
+
+        public void Dispose()
+        {
+            _context?.Dispose();
         }
     }
 }

@@ -9,6 +9,6 @@ namespace Project.DAL.Entities
         public int Id { get; set; }
         public int Number { get; set; }
         public Material Material { get; set; }
-        public User Assigner { get; set; }
+        public virtual UserProfile Assigner { get; set; }
     }
 }

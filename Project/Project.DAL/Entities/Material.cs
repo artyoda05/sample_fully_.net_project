@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Project.DAL.Entities
 {
     public class Material
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Info { get; set; }
-        public DateTime CreationTime { get; set; }
+        public DateTime AddedAt { get; set; }
         public string Path { get; set; }
-        public User Author { get; set; }
-        public ICollection<Rating> Ratings { get; set; }
+        public UserProfile Author { get; set; }
+        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }

@@ -1,34 +1,38 @@
-﻿using System.Collections.Generic;
-using Project.DAL.Entities;
+﻿using Project.DAL.Entities;
 using Project.DAL.Interfaces;
+using Project.DAL.Context;
+using System.Data.Entity;
 
 namespace Project.DAL.Repositories
 {
     public class MaterialRepository : IRepository<Material>
     {
-        public IEnumerable<Material> ReadAll()
-        {
-            throw new System.NotImplementedException();
-        }
-
+        private readonly EFContext _context;
+        public MaterialRepository(EFContext context) => _context = context;
+        
         public Material Read(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Materials.Find(id);
         }
 
         public void Create(Material item)
         {
-            throw new System.NotImplementedException();
+            _context.Materials.Add(item);
         }
 
         public void Update(Material item)
         {
-            throw new System.NotImplementedException();
+            _context.Entry(item).State = EntityState.Modified;
         }
 
-        public void Delete(int id)
+        public void Delete(Material item)
         {
-            throw new System.NotImplementedException();
+            _context.Materials.Remove(item);
+        }
+
+        public void Dispose()
+        {
+            _context?.Dispose();
         }
     }
 }
