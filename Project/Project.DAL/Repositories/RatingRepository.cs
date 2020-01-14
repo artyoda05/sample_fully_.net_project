@@ -12,7 +12,7 @@ namespace Project.DAL.Repositories
         public RatingRepository(EFContext context) => _context = context;
         public IEnumerable<Rating> ReadAll()
         {
-            throw new System.NotImplementedException();
+            return _context.Ratings;
         }
 
         public Rating Read(int id)

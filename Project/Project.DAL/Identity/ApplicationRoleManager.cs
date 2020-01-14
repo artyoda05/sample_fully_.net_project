@@ -6,7 +6,7 @@ using Project.DAL.Entities;
 
 namespace Project.DAL.Identity
 {
-    class ApplicationRoleManager : RoleManager<ApplicationRole>
+    public class ApplicationRoleManager : RoleManager<ApplicationRole>
     {
         public ApplicationRoleManager(IRoleStore<ApplicationRole> store) : base(store)
         {

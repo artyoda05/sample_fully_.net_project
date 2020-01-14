@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Project.DAL.Entities
@@ -13,7 +14,10 @@ namespace Project.DAL.Entities
         public string Info { get; set; }
         public DateTime AddedAt { get; set; }
         public string Path { get; set; }
-        public UserProfile Author { get; set; }
+        
+        public string AuthorId { get; set; }
+        [ForeignKey("AuthorId")]
+        public virtual UserProfile Author { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }
     }
 }

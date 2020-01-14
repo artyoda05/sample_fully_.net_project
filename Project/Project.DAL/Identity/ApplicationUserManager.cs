@@ -6,7 +6,7 @@ using Project.DAL.Entities;
 
 namespace Project.DAL.Identity
 {
-    class ApplicationUserManager : UserManager<ApplicationUser>
+    public class ApplicationUserManager : UserManager<ApplicationUser>
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store) : base(store)
         {

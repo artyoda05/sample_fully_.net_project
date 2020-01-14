@@ -1,16 +1,19 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Project.DAL.Entities;
+using Project.DAL.Identity;
 
 namespace Project.DAL.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<UserProfile> Profiles { get; }
+        IUserRepository Profiles { get; }
         IRepository<Material> Materials { get; }
         IRepository<Rating> Ratings { get; }
-        RoleManager<ApplicationRole> Roles { get; }
-        UserManager<ApplicationUser> Users { get; }
+        ApplicationRoleManager Roles { get; }
+        ApplicationUserManager Users { get; }
         void Save();
+        Task SaveAsync();
     }
 }

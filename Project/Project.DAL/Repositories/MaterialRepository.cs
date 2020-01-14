@@ -1,4 +1,5 @@
-﻿using Project.DAL.Entities;
+﻿using System.Collections.Generic;
+using Project.DAL.Entities;
 using Project.DAL.Interfaces;
 using Project.DAL.Context;
 using System.Data.Entity;
@@ -9,7 +10,12 @@ namespace Project.DAL.Repositories
     {
         private readonly EFContext _context;
         public MaterialRepository(EFContext context) => _context = context;
-        
+
+        public IEnumerable<Material> ReadAll()
+        {
+            return _context.Materials;
+        }
+
         public Material Read(int id)
         {
             return _context.Materials.Find(id);

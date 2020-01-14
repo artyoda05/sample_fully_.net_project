@@ -9,7 +9,7 @@ namespace Project.DAL.Context
 {
     public class EFContext : IdentityDbContext<ApplicationUser>
     {
-        public EFContext() : base("Context", throwIfV1Schema: false) { }
+        public EFContext() : base("DefaultContext", throwIfV1Schema: false) { }
         public EFContext(string connectionString) : base(connectionString) { }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Material> Materials { get; set; }

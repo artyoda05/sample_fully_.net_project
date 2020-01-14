@@ -5,7 +5,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Project.DAL.Entities
 {
-    public class ApplicationRole: IdentityRole
+    public class ApplicationRole : IdentityRole
     {
     }
 }

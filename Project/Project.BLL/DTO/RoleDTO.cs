@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Project.BLL.DTO
 {
-    class RoleDTO
+    public class RoleDTO
     {
         public string Name { get; set; }
         public ICollection<UserDTO> Users { get; set; }

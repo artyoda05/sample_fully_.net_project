@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Project.DAL.Context;
@@ -20,19 +21,27 @@ namespace Project.DAL
         private ApplicationRoleManager _roleManager;
         private ApplicationUserManager _userManager;
 
+        public UnitOfWork() => _context = new EFContext();
+        public UnitOfWork(string connectionString) => _context = new EFContext(connectionString);
         public UnitOfWork(EFContext context) => _context = context;
-        public IRepository<UserProfile> Profiles => _users ??=  new UserRepository(_context);
+        public IUserRepository Profiles => _users ??=  new UserRepository(_context);
         public IRepository<Material> Materials => _materials ??= new MaterialRepository(_context);
         public IRepository<Rating> Ratings => _ratings ??= new RatingRepository(_context);
-        public RoleManager<ApplicationRole> Roles => 
+        public ApplicationRoleManager Roles => 
             _roleManager ??= new ApplicationRoleManager(new RoleStore<ApplicationRole>(_context));
-        public UserManager<ApplicationUser> Users =>
+        public ApplicationUserManager Users =>
             _userManager ??= new ApplicationUserManager(new UserStore<ApplicationUser>(_context));
 
         public void Save()
         {
             _context.SaveChanges();
         }
+
+        public Task SaveAsync()
+        {
+            return _context.SaveChangesAsync();
+        }
+
         public void Dispose()
         {
             Dispose(true);
@@ -45,9 +54,9 @@ namespace Project.DAL
             if (this._disposed) return;
             if (disposing)
             {
-                _ratings.Dispose();
-                _materials.Dispose();
-                _users.Dispose();
+                _ratings?.Dispose();
+                _materials?.Dispose();
+                _users?.Dispose();
             }
             this._disposed = true;
         }
